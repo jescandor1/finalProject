@@ -63,5 +63,18 @@ class Course:
         schedule = []
         return schedule
 
+    def check_overlap(self, other):
+        """
+            Function: checks for overlap between classes chosen
 
+            Parameters:
+                other class that's being compared
+
+            Returns:
+                boolean of whether there is overlap or not
+        """
+        # if overlap returns true, otherwise returns false
+
+    #def alternative(self):
+    #possibly generate alternative schedule
 
