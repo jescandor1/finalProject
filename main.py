@@ -10,6 +10,11 @@ with open("data.json", "w") as f:
     json.dump(sample_data, f, indent=4)
 
 def load_courses(filename):
+    """
+    Converts data in a json file to Course objects
+    :param filename: file to be read and data loaded
+    :return: Course objects
+    """
     with open(filename, "r") as infile:
         data = json.load(infile)
         courses = [
