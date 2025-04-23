@@ -60,11 +60,10 @@ class Course:
         """
         # if overlap returns true, otherwise returns false
         ret = False
-        while ret == False:
-            for time in self.get_times(): #for every time of the course
-                for course in courses: #for every course already in schedule
-                    if time in course.get_times(): #if the time of the course is ine the times of the already scheduled course
-                        ret = True #ret becomes True, meaning there is overlap
+        for time in self.get_times(): #for every time of the course
+            for course in courses: #for every course already in schedule
+                if time in course.get_times(): #if the time of the course is ine the times of the already scheduled course
+                    ret = True #ret becomes True, meaning there is overlap
         return ret
 
     #def alternative(self):
@@ -97,6 +96,6 @@ class Course:
         schedule = []
 
         for course in courses:
-                if cls.get_total_credits(schedule) < 18 and course.check_overlap(schedule) == False:
-                    schedule.append(course)
+            if cls.get_total_credits(schedule) < 18 and course.check_overlap(schedule) == False:
+                schedule.append(course)
         return schedule
