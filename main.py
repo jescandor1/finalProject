@@ -2,10 +2,10 @@ import json
 import scheduler
 
 sample_data = [
-    {"name": "Computational Math", "id": "MAD 2502", "periods": [1, 2, 3], "credits": 3},
-    {"name": "Calculus 3", "id": "MAC 2313", "periods": [3, 4, 5], "credits": 4},
-    {"name": "Programming With Data in R", "id": "STA 3100", "periods": [5, 7, 8], "credits": 3},
-    {"name": "Computational Linear Algebra", "id": "MAS 3114", "periods": [5], "credits": 3}
+    {"name": "Computational Math", "id": "MAD 2502", "days": "MWF", "periods": [5], "credits": 3},
+    {"name": "Calculus 3", "id": "MAC 2313", "days": "MWF", "periods": [2, 6, 8, 9], "credits": 4},
+    {"name": "Programming With Data in R", "id": "STA 3100", "days": "MWF", "periods": [5, 7, 8], "credits": 3},
+    {"name": "Computational Linear Algebra", "id": "MAS 3114", "days": "MWF", "periods": [0, 5], "credits": 3}
 ]
 #writes json file
 with open("data.json", "w") as f:
@@ -23,6 +23,7 @@ def load_courses(filename):
             scheduler.Course(
                 record["name"],
                 record["id"],
+                record["days"],
                 record["periods"],
                 record["credits"]
             )

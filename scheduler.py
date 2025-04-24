@@ -1,8 +1,9 @@
 class Course:
-    def __init__(self, name, id, times, credits):
+    def __init__(self, name, id, days, periods, credits):
         self.name = name
         self.id = id
-        self.times = times
+        self.days = days
+        self.periods = periods
         self.credits = credits
 
     #getters and setters
@@ -12,8 +13,11 @@ class Course:
     def get_id(self):
         return self.id
 
-    def get_times(self):
-        return self.times
+    def get_days(self):
+        return self.days
+
+    def get_periods(self):
+        return self.periods
 
     def get_credits(self):
         return self.credits
@@ -24,14 +28,17 @@ class Course:
     def set_id(self, id):
         self.id = id
 
-    def set_times(self, times):
-        self.times = times
+    def set_days(self):
+        return self.days
+
+    def set_periods(self, periods):
+        self.periods = periods
 
     def set_credits(self, credits):
         self.credits = credits
 
     def __str__(self):
-        return f"Course Name: {self.name}, Class ID: {self.id}, Credits: {self.credits}, Times: {self.times}"
+        return f"Course Name: {self.name}, Class ID: {self.id}, Credits: {self.credits}, Days: {self.days}, Periods: {self.periods}"
 
     @classmethod
     def visualize_schedule(cls, classes: list):
@@ -44,8 +51,11 @@ class Course:
         Returns:
             schedule (list): the visual representation of the schedule.
         """
-
-        schedule = []
+        schedule = ""
+        for course in classes:
+            days, periods = course.get_times()
+            periods_str = ", ".join(map(str, periods))
+            schedule += f"{course.get_name()} meets on {days} during periods: {periods_str}\n"
         return schedule
 
     def check_overlap(self, courses: list):
@@ -61,9 +71,9 @@ class Course:
         # if overlap returns true, otherwise returns false
         ret = False
         while ret == False:
-            for time in self.get_times(): #for every time of the course
+            for period in self.get_periods(): #for every time of the course
                 for course in courses: #for every course already in schedule
-                    if time in course.get_times(): #if the time of the course is ine the times of the already scheduled course
+                    if period in course.get_periods(): #if the time of the course is ine the times of the already scheduled course
                         ret = True #ret becomes True, meaning there is overlap
         return ret
 
