@@ -101,7 +101,7 @@ class Course:
                         #that row column pairing gets the course name inputted there
                         schedule_grid[(day, hour)] = course.get_name()
                 except ValueError:
-                    print(f"Invalid time")
+                    print(f"Invalid time stated")
 
         #truncate course names that are too long
         #display the grid
