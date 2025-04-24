@@ -2,10 +2,10 @@ import json
 import scheduler
 
 sample_data = [
-    {"name": "Computational Math", "id": "MAD 2502", "days": "MWF", "periods": [5], "credits": 3},
-    {"name": "Calculus 3", "id": "MAC 2313", "days": "MWF", "periods": [2, 6, 8, 9], "credits": 4},
-    {"name": "Programming With Data in R", "id": "STA 3100", "days": "MWF", "periods": [5, 7, 8], "credits": 3},
-    {"name": "Computational Linear Algebra", "id": "MAS 3114", "days": "MWF", "periods": [0, 5], "credits": 3}
+    {"name": "Computational Math", "id": "MAD 2502", "periods": ["M1", "W2", "F3"], "credits": 3},
+    {"name": "Calculus 3", "id": "MAC 2313", "periods": ["M1", "R2", "F3"], "credits": 4},
+    {"name": "Programming With Data in R", "id": "STA 3100", "periods": ["M5", "T7", "W8"], "credits": 3},
+    {"name": "Computational Linear Algebra", "id": "MAS 3114", "periods": ["T5", "R5"], "credits": 3}
 ]
 #writes json file
 with open("data.json", "w") as f:
@@ -23,7 +23,6 @@ def load_courses(filename):
             scheduler.Course(
                 record["name"],
                 record["id"],
-                record["days"],
                 record["periods"],
                 record["credits"]
             )
@@ -40,7 +39,9 @@ def main():
     # print test
     for course in courses:
         print(course)
-
+    print(1)
+    for course in scheduler.Course.get_schedule(courses):
+        print(course)
 
 if __name__ == '__main__':
     main()
