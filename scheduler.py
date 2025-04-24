@@ -75,6 +75,37 @@ class Course:
         """
         # if overlap returns true, otherwise returns false
 
-    #def alternative(self):
-    #possibly generate alternative schedule
+    @classmethod
+    def visualize_schedule(cls, classes: list):
+        """
+        Function: the function returns a visual representation of the schedule.
+
+        Parameters:
+            classes (list): the schedule of the entered classes.
+
+        Returns:
+            schedule (list): the visual representation of the schedule.
+        """
+
+        time_slot = []
+        #from json file, ex is ["7:25 - 8:15"]
+        days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+
+        schedule_grid = {(day, time): "" for day in days for time in time_slot}
+
+        for course in classes:
+            for time in course.get_times():
+                try:
+                    day, hour = time.split()
+                    if (day, hour) in schedule_grid:
+                        #that row column pairing gets the course name inputted there
+                        schedule_grid[(day, hour)] = course.get_name()
+                except ValueError:
+                    print(f"Invalid time")
+
+        #truncate course names that are too long
+        #display the grid
+
+
+
 
