@@ -34,21 +34,6 @@ class Course:
         return f"Course Name: {self.name}, Class ID: {self.id}, Credits: {self.credits}, Times: {self.times}"
 
     @classmethod
-    def get_schedule(cls, classes: list, preference: str):
-        """
-        Function: the function returns a schedule of the entered classes, prioritizing classes listed first and keeping in mind the preferences of early/ midday/ or late classes.
-
-        Parameters:
-            classes (list): the list of classes to schedule.
-            preference (str): the preference of early / midday or late classes.
-
-        Returns:
-            schedule (list): the schedule of the entered classes.
-        """
-        schedule = []
-        return schedule
-
-    @classmethod
     def visualize_schedule(cls, classes: list):
         """
         Function: the function returns a visual representation of the schedule.
@@ -63,7 +48,7 @@ class Course:
         schedule = []
         return schedule
 
-    def check_overlap(self, other):
+    def check_overlap(self, courses: list):
         """
             Function: checks for overlap between classes chosen
 
@@ -74,6 +59,12 @@ class Course:
                 boolean of whether there is overlap or not
         """
         # if overlap returns true, otherwise returns false
+        ret = False
+        for time in self.get_times(): #for every time of the course
+            for course in courses: #for every course already in schedule
+                if time in course.get_times(): #if the time of the course is ine the times of the already scheduled course
+                    ret = True #ret becomes True, meaning there is overlap
+        return ret
 
     @classmethod
     def visualize_schedule(cls, classes: list):
@@ -109,3 +100,33 @@ class Course:
 
 
 
+    @classmethod
+    def get_total_credits(cls, schedule: list):
+        """
+        Function: the function returns the total credits of your schedule.
+        Parameter: schedule(list)
+        Return: int
+        """
+        credits = 0
+        for course in schedule:
+            credits += course.get_credits()
+        return credits
+
+    @classmethod
+    def get_schedule(cls, courses: list):
+        """
+        Function: the function returns a schedule of the entered classes, prioritizing classes listed first and keeping in mind the preferences of early/ midday/ or late classes.
+
+        Parameters:
+            courses (list): the list of classes to schedule.
+
+        Returns:
+            schedule (list): the schedule of the entered classes.
+        """
+
+        schedule = []
+
+        for course in courses:
+            if cls.get_total_credits(schedule) < 18 and course.check_overlap(schedule) == False:
+                schedule.append(course)
+        return schedule
