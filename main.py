@@ -86,15 +86,71 @@ def load_courses(filename):
         ]
     return courses
 
+def visualize_schedule(schedule):
+    """
+    Function: the function returns a visual representation of the schedule.
+
+    Parameters:
+        classes (list): the schedule of the wanted classes with no conflicts
+
+    Returns:
+        schedule (list): the visual representation of the schedule as a matrix
+    """
+
+    #initailizing rows and columns
+    days = ['M', 'T', 'W', 'R', 'F']
+    periods = 1,2,3,4,5,6,7,8
+
+    #creating blank grid
+    grid = {}
+    for d in days:
+        grid[d] = {}
+        for p in periods:
+            grid[d][p] = ""
+
+    for course in schedule:
+        for time in course.get_times():
+            #retrieving day of the week
+            day = time[0]
+            #retrieving period of day
+            period = int(time[1])
+            #adding id with getter after identifying which cells have courses
+            if grid[day][period] == "":
+                grid[day][period] = course.get_id()
+
+    #printing headers
+    print("Period |", end =" ")
+    for d in days:
+        #using 10-len(d) to fill the 10 spaces up after adding the day
+        print(d + " " * (9 - len(d)) + "|", end=" ")
+    print()
+    print("-" * 63)
+
+    # Step 4: Print each row
+    for p in periods:
+        row = f"{p}      | "
+        for d in days:
+            #checking each cell in the grid and adding spaces if it is empty or the course plus spaces to fill up rest of cell
+            entry = grid[d][p]
+            if entry == "":
+                entry = " " * 9
+            else:
+                entry = entry + " " * (9 - len(entry))
+            row += entry + "| "
+        print(row)
+    print("_" * 63)
+
+
 def main():
     filename = "data.json"
 
     courses = load_courses(filename)
 
     # print test
-    print("Here are all of the loaded courses:")
+    print("Here are all of the loaded courses:\n")
     for course in courses:
         print(course)
+    print()
 
     wanted_ids = ["MAC 2311", "MAD 2502", "COP 3502", "COP 3502L", "STA 2023"]
     wanted_courses = []
@@ -102,13 +158,20 @@ def main():
         if course.get_id() in wanted_ids:
             wanted_courses.append(course)
 
-    print("Here are all of the courses that we want:")
+    schedule = scheduler.Course.get_schedule(wanted_courses)
+
+    print("Here are all of the courses that we want:\n")
     for course in wanted_courses:
         print(course)
+    print()
 
-    print("Here is the schedule that was made:")
+    print("Here is the schedule that was made:\n")
     for course in scheduler.Course.get_schedule(wanted_courses):
         print(course)
+    print()
 
-if __name__ == '__main__':
+    print("Here is a visual of your schedule: \n")
+    visualize_schedule(schedule)
+
+if __name__ == "__main__":
     main()
