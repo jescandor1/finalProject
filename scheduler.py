@@ -1,7 +1,8 @@
 class Course:
-    def __init__(self, name, id, times, credits):
+    def __init__(self, name, id, session_id, times, credits, ):
         self.name = name
         self.id = id
+        self.session_id = session_id
         self.times = times
         self.credits = credits
 
@@ -18,6 +19,9 @@ class Course:
     def get_credits(self):
         return self.credits
 
+    def get_session_id(self):
+        return self.session_id
+
     def set_name(self, name):
         self.name = name
 
@@ -30,8 +34,11 @@ class Course:
     def set_credits(self, credits):
         self.credits = credits
 
+    def set_session_id(self, session_id):
+        self.session_id = session_id
+
     def __str__(self):
-        return f"Course Name: {self.name}, Class ID: {self.id}, Credits: {self.credits}, Times: {self.times}"
+        return f"Course Name: {self.name}, Class ID: {self.id}, Session ID: {self.session_id}, Credits: {self.credits}, Times: {self.times}"
 
     @classmethod
     def visualize_schedule(cls, classes: list):
@@ -76,9 +83,9 @@ class Course:
         """
         # if overlap returns true, otherwise returns false
         ret = False
-        for time in self.get_times(): #for every time of the course
+        for time in self.get_times():
             for course in courses: #for every course already in schedule
-                if time in course.get_times(): #if the time of the course is ine the times of the already scheduled course
+                if time in course.get_times() or self.get_id() == course.get_id(): #if the time of the course is ine the times of the already scheduled course
                     ret = True #ret becomes True, meaning there is overlap
         return ret
 
@@ -109,7 +116,8 @@ class Course:
 
         schedule = []
 
+
         for course in courses:
-            if cls.get_total_credits(schedule) < 18 and course.check_overlap(schedule) == False:
+            if cls.get_total_credits(schedule) + course.get_credits() <= 18 and course.check_overlap(schedule) == False:
                 schedule.append(course)
         return schedule

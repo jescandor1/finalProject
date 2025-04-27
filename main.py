@@ -2,56 +2,64 @@ import json
 import scheduler
 
 sample_data = [
-    {"name": "Analytical Geometry and Calculus 1", "id": "MAC 2311", "periods": (
-        ["M3", "W3", "F3"],
-        ["M4", "W4", "F4"],
-        ["M5", "W5", "F5"]
-    ), "credits": 4},
-    {"name": "Analytical Geometry and Calculus 2", "id": "MAC 2312", "periods": (
-        ["M2", "W2", "F2"],
-        ["M6", "W6", "F6"],
-        ["M8", "W8", "F8"]
-    ), "credits": 4},
-    {"name": "Introduction to Computational Mathematics", "id": "MAD 2502", "periods": (
-        ["M5", "W5", "F5"],
-        ["M6", "W6", "F6"]
-    ), "credits": 3},
-    {"name": "Introduction to Programming", "id": "COP 3502", "periods": (
-        ["M6", "W6", "F6"],
-        ["M8", "W8", "F8"]
-    ), "credits": 3},
-    {"name": "Programming Fundamentals 1 Lab", "id": "COP 3502L", "periods": (
-        ["T7"],
-        ["R7"]
-    ), "credits": 1},
-    {"name": "Programming Fundamentals 2", "id": "COP 3503", "periods": (
-        ["M7", "W7", "F7"],
-        ["M8", "W8", "F8"]
-    ), "credits": 3},
-    {"name": "Introduction to Statistics 1", "id": "STA 2023", "periods": (
-        ["T3", "R3"],
-        ["T4", "R4"]
-    ), "credits": 3},
-    {"name": "Introduction to Statistics 2", "id": "STA 3024", "periods": (
-        ["M2", "W2", "F2"],
-        ["M5", "W5", "F5"]
-    ), "credits": 3},
-    {"name": "Statistical Learning", "id": "STA 4210", "periods": (
-        ["T5", "R5"],
-        ["M7", "W7", "F7"]
-    ), "credits": 3},
-    {"name": "Data Science Capstone", "id": "STA 4930", "periods": (
-        ["W7"],
-        ["F5"]
-    ), "credits": 3},
-    {"name": "Data Structures and Algorithms 1", "id": "COT 3100", "periods": (
-        ["M8", "W8", "F8"],
-        ["M7", "W7", "F7"]
-    ), "credits": 3},
-    {"name": "Linear Algebra", "id": "MAS 3114", "periods": (
-        ["M5", "W5", "F5"],
-        ["M6", "W6", "F6"]
-    ), "credits": 3},
+    {"name": "Analytical Geometry and Calculus 1", "id": "MAC 2311", "session_id": "58291",
+     "periods": (["M3", "W3", "F3"]), "credits": 4},
+    {"name": "Analytical Geometry and Calculus 1", "id": "MAC 2311", "session_id": "93215",
+     "periods": (["M4", "W4", "F4"]), "credits": 4},
+    {"name": "Analytical Geometry and Calculus 1", "id": "MAC 2311", "session_id": "10437",
+     "periods": (["M5", "W5", "F5"]), "credits": 4},
+
+    {"name": "Analytical Geometry and Calculus 2", "id": "MAC 2312", "session_id": "51820",
+     "periods": (["M2", "W2", "F2"]), "credits": 4},
+    {"name": "Analytical Geometry and Calculus 2", "id": "MAC 2312", "session_id": "79904",
+     "periods": (["M6", "W6", "F6"]), "credits": 4},
+    {"name": "Analytical Geometry and Calculus 2", "id": "MAC 2312", "session_id": "34309",
+     "periods": (["M8", "W8", "F8"]), "credits": 4},
+
+    {"name": "Introduction to Computational Mathematics", "id": "MAD 2502", "session_id": "74082",
+     "periods": (["M3", "W3", "F3"]), "credits": 3},
+    {"name": "Introduction to Computational Mathematics", "id": "MAD 2502", "session_id": "24819",
+     "periods": (["M6", "W6", "F6"]), "credits": 3},
+
+    {"name": "Introduction to Programming", "id": "COP 3502", "session_id": "66354", "periods": (["M6", "W6", "F6"]),
+     "credits": 3},
+    {"name": "Introduction to Programming", "id": "COP 3502", "session_id": "54702", "periods": (["M8", "W8", "F8"]),
+     "credits": 3},
+
+    {"name": "Programming Fundamentals 1 Lab", "id": "COP 3502L", "session_id": "15789", "periods": (["T7"]),
+     "credits": 1},
+    {"name": "Programming Fundamentals 1 Lab", "id": "COP 3502L", "session_id": "96513", "periods": (["R7"]),
+     "credits": 1},
+
+    {"name": "Programming Fundamentals 2", "id": "COP 3503", "session_id": "82346", "periods": (["M7", "W7", "F7"]),
+     "credits": 3},
+    {"name": "Programming Fundamentals 2", "id": "COP 3503", "session_id": "20745", "periods": (["M8", "W8", "F8"]),
+     "credits": 3},
+
+    {"name": "Introduction to Statistics 1", "id": "STA 2023", "session_id": "70415", "periods": (["T3", "R3"]),
+     "credits": 3},
+    {"name": "Introduction to Statistics 1", "id": "STA 2023", "session_id": "38462", "periods": (["T4", "R4"]),
+     "credits": 3},
+
+    {"name": "Introduction to Statistics 2", "id": "STA 3024", "session_id": "56941", "periods": (["M2", "W2", "F2"]),
+     "credits": 3},
+    {"name": "Introduction to Statistics 2", "id": "STA 3024", "session_id": "19538", "periods": (["M5", "W5", "F5"]),
+     "credits": 3},
+
+    {"name": "Statistical Learning", "id": "STA 4210", "session_id": "44628", "periods": (["T5", "R5"]), "credits": 3},
+    {"name": "Statistical Learning", "id": "STA 4210", "session_id": "81204", "periods": (["M7", "W7", "F7"]),
+     "credits": 3},
+
+    {"name": "Data Science Capstone", "id": "STA 4930", "session_id": "29674", "periods": (["W7"]), "credits": 3},
+    {"name": "Data Science Capstone", "id": "STA 4930", "session_id": "57263", "periods": (["F5"]), "credits": 3},
+
+    {"name": "Data Structures and Algorithms 1", "id": "COT 3100", "session_id": "69830",
+     "periods": (["M8", "W8", "F8"]), "credits": 3},
+    {"name": "Data Structures and Algorithms 1", "id": "COT 3100", "session_id": "40972",
+     "periods": (["M7", "W7", "F7"]), "credits": 3},
+
+    {"name": "Linear Algebra", "id": "MAS 3114", "session_id": "13680", "periods": (["M5", "W5", "F5"]), "credits": 3},
+    {"name": "Linear Algebra", "id": "MAS 3114", "session_id": "87591", "periods": (["M6", "W6", "F6"]), "credits": 3},
 ]
 
 #writes json file
@@ -70,6 +78,7 @@ def load_courses(filename):
             scheduler.Course(
                 record["name"],
                 record["id"],
+                record["session_id"],
                 record["periods"],
                 record["credits"]
             )
@@ -87,8 +96,18 @@ def main():
     for course in courses:
         print(course)
 
-    print("Here are all of the loaded courses:")
-    for course in scheduler.Course.get_schedule(courses):
+    wanted_ids = ["MAC 2311", "MAD 2502", "COP 3502", "COP 3502L", "STA 2023"]
+    wanted_courses = []
+    for course in courses:
+        if course.get_id() in wanted_ids:
+            wanted_courses.append(course)
+
+    print("Here are all of the courses that we want:")
+    for course in wanted_courses:
+        print(course)
+
+    print("Here is the schedule that was made:")
+    for course in scheduler.Course.get_schedule(wanted_courses):
         print(course)
 
 if __name__ == '__main__':
