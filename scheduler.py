@@ -41,11 +41,11 @@ class Course:
         return f"Course Name: {self.name}, Class ID: {self.id}, Session ID: {self.session_id}, Credits: {self.credits}, Times: {self.times}"
 
 
-    def check_overlap(self, courses: list):
+    def check_overlap(self, courses: list)-> bool:
         """
             Function: checks for overlap between classes chosen
 
-            Parameters:
+            Parameters: courses(list)
                 other class that's being compared
 
             Returns:
@@ -61,10 +61,10 @@ class Course:
 
 
     @classmethod
-    def get_total_credits(cls, schedule: list):
+    def get_total_credits(cls, schedule: list)-> int:
         """
         Function: the function returns the total credits of your schedule.
-        Parameter: schedule(list)
+        Parameter: schedule(list) contains all the courses used to count the credits
         Return: int
         """
         credits = 0
@@ -73,7 +73,7 @@ class Course:
         return credits
 
     @classmethod
-    def get_early_schedule(cls, courses: list):
+    def get_early_schedule(cls, courses: list)-> list:
         """
         Function: the function returns a schedule of the entered classes, prioritizing classes listed first and keeping in mind the preferences of early classes.
 
@@ -88,12 +88,13 @@ class Course:
 
 
         for course in courses:
+            # check number of credits and if there is overlap
             if cls.get_total_credits(schedule) + course.get_credits() <= 18 and course.check_overlap(schedule) == False:
                 schedule.append(course)
         return schedule
 
     @classmethod
-    def get_late_schedule(cls, courses: list):
+    def get_late_schedule(cls, courses: list)-> list:
         """
         Function: the function returns a schedule of the entered classes, prioritizing a late class scheduler based on later class times.
 
@@ -110,6 +111,7 @@ class Course:
         schedule = []
 
         for course in courses:
+            # check number of credits and if there is overlap
             if cls.get_total_credits(schedule) + course.get_credits() <= 18 and course.check_overlap(schedule) == False:
                 schedule.append(course)
         return schedule

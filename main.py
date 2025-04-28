@@ -68,7 +68,7 @@ sample_data = [
 with open("data.json", "w") as f:
     json.dump(sample_data, f, indent=4)
 
-def load_courses(filename):
+def load_courses(filename: str)-> list:
     """
     Converts data in a json file to Course objects
     :param filename: file to be read and data loaded
@@ -88,12 +88,12 @@ def load_courses(filename):
         ]
     return courses
 
-def visualize_schedule(schedule):
+def visualize_schedule(schedule: list):
     """
     Function: the function returns a visual representation of the schedule.
 
     Parameters:
-        classes (list): the schedule of the wanted classes with no conflicts
+        schedule (list): the schedule of the wanted classes with no conflicts
 
     Returns:
         schedule (list): the visual representation of the schedule as a matrix
