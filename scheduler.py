@@ -1,5 +1,5 @@
 class Course:
-    def __init__(self, name, id, session_id, times, credits, ):
+    def __init__(self, name, id, session_id, times, credits):
         self.name = name
         self.id = id
         self.session_id = session_id

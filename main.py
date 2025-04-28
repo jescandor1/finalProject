@@ -3,7 +3,7 @@ import scheduler
 
 sample_data = [
     {"name": "Analytical Geometry and Calculus 1", "id": "MAC 2311", "session_id": "58291",
-     "periods": (["M3", "W3", "F3"]), "credits": 4},
+     "periods": (["M1", "W1", "F1"]), "credits": 4},
     {"name": "Analytical Geometry and Calculus 1", "id": "MAC 2311", "session_id": "93215",
      "periods": (["M4", "W4", "F4"]), "credits": 4},
     {"name": "Analytical Geometry and Calculus 1", "id": "MAC 2311", "session_id": "10437",
@@ -21,6 +21,8 @@ sample_data = [
     {"name": "Introduction to Computational Mathematics", "id": "MAD 2502", "session_id": "24819",
      "periods": (["M6", "W6", "F6"]), "credits": 3},
 
+    {"name": "Introduction to Programming", "id": "COP 3502", "session_id": "66354", "periods": (["M4", "W4", "F4"]),
+     "credits": 3},
     {"name": "Introduction to Programming", "id": "COP 3502", "session_id": "66354", "periods": (["M6", "W6", "F6"]),
      "credits": 3},
     {"name": "Introduction to Programming", "id": "COP 3502", "session_id": "54702", "periods": (["M8", "W8", "F8"]),
