@@ -139,6 +139,10 @@ def visualize_schedule(schedule):
             row += entry + "| "
         print(row)
     print("_" * 63)
+    num_credits = 0
+    for course in schedule:
+        num_credits += course.get_credits()
+    print(f"Credits: {num_credits}")
 
 
 def main():
@@ -158,20 +162,35 @@ def main():
         if course.get_id() in wanted_ids:
             wanted_courses.append(course)
 
-    schedule = scheduler.Course.get_schedule(wanted_courses)
+    early_schedule = scheduler.Course.get_early_schedule(wanted_courses)
+    late_schedule = scheduler.Course.get_late_schedule(wanted_courses)
 
     print("Here are all of the courses that we want:\n")
     for course in wanted_courses:
         print(course)
     print()
 
-    print("Here is the schedule that was made:\n")
-    for course in scheduler.Course.get_schedule(wanted_courses):
+    print("Here is the early class schedule that was made:\n")
+    for course in early_schedule:
         print(course)
     print()
 
-    print("Here is a visual of your schedule: \n")
-    visualize_schedule(schedule)
+    print("Here is a visual of your early schedule: \n")
+    visualize_schedule(early_schedule)
+
+    print()
+    print("_" * 120)
+    print()
+
+    print("Here is the late schedule that was made:\n")
+    for course in late_schedule:
+        print(course)
+    print()
+
+    print("Here is a visual of your late class schedule: \n")
+    visualize_schedule(late_schedule)
+
+
 
 if __name__ == "__main__":
     main()

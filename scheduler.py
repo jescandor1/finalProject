@@ -73,9 +73,9 @@ class Course:
         return credits
 
     @classmethod
-    def get_schedule(cls, courses: list):
+    def get_early_schedule(cls, courses: list):
         """
-        Function: the function returns a schedule of the entered classes, prioritizing classes listed first and keeping in mind the preferences of early/ midday/ or late classes.
+        Function: the function returns a schedule of the entered classes, prioritizing classes listed first and keeping in mind the preferences of early classes.
 
         Parameters:
             courses (list): the list of classes to schedule.
@@ -86,6 +86,28 @@ class Course:
 
         schedule = []
 
+
+        for course in courses:
+            if cls.get_total_credits(schedule) + course.get_credits() <= 18 and course.check_overlap(schedule) == False:
+                schedule.append(course)
+        return schedule
+
+    @classmethod
+    def get_late_schedule(cls, courses: list):
+        """
+        Function: the function returns a schedule of the entered classes, prioritizing a late class scheduler based on later class times.
+
+        Parameters:
+            courses (list): the list of classes to schedule.
+
+        Returns:
+            schedule (list): the schedule of the entered classes.
+        """
+
+        # Sort courses by their latest period in descending order
+        courses.sort(key=lambda late_course: max(int(time[1]) for time in late_course.get_times()), reverse=True)
+
+        schedule = []
 
         for course in courses:
             if cls.get_total_credits(schedule) + course.get_credits() <= 18 and course.check_overlap(schedule) == False:
